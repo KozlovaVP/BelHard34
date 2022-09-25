@@ -1,4 +1,8 @@
 num1 = int(input('Input the first number: '))
 num2 = int(input('Input the second number: '))
 num3 = int(input('Input the third number: '))
-#
+amount_positive = (num1 > 0) + (num2 > 0) + (num3 > 0)
+amount_negative = (num1 < 0) + (num2 < 0) + (num3 < 0)
+print('Amount of positive numbers = ' + str(amount_positive))
+print('Amount of negative numbers = ' + str(amount_negative))
+print('Amount of zeros = ' + str(3 - amount_positive - amount_negative))
