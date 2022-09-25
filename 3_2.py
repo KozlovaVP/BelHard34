@@ -1,3 +1,4 @@
-num1 = input('Input the first number:')
-num2 = input('Input the second number:')
-num3 = input('Input the third number:')
+num1 = int(input('Input the first number: '))
+num2 = int(input('Input the second number: '))
+num3 = int(input('Input the third number: '))
+print(round((num1 + num2 + num3)/3, 3))
