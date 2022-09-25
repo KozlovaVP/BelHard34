@@ -7,5 +7,5 @@ print('Hello ' + name + ' (' + age + ' years old, from ' + city + ')!')
 print('Hello %s (%s years old, from %s)!' % (name, age, city))
 # the third solution:
 print('Hello {} ({} years old, from {})!'.format(name, age, city))
-# the forth solution:
+# the fourth solution:
 print(f'Hello {name} ({age} years old, from {city})!')
