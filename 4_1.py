@@ -5,4 +5,3 @@ while i <= number:
     list_of_2.append(pow(2, i))
     i +=1
 print(list_of_2)
-
