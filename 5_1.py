@@ -3,7 +3,6 @@ n = int(input('Insert n: '))
 m = int(input('Insert m: '))
 k = int(input('Insert k: '))
 count = 0
-result = []
 i = k
 while count < n:
     i += 1
