@@ -7,5 +7,5 @@ i = k
 while count < n:
     i += 1
     if not i % m:
-        print(i, end = '\t')
+        print(i, end='\t')
         count += 1
