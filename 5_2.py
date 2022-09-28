@@ -16,4 +16,7 @@ elif operation == 2:
 elif operation == 3:
     print('The result is: ' + f'{number1 * number2}')
 else:
-    print('The result is: ' + f'{number1 / number2}')
+    try:
+        print('The result is: ' + f'{number1 / number2}')
+    except ZeroDivisionError:
+        print('It is impossible to divide by zero')
