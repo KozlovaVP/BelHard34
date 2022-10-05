@@ -3,6 +3,6 @@
 lst = [1, 2, 3, 4, 5, 6, 7, 8]
 for i in range(int(len(lst) / 2)):
     num = lst[i]
-    lst[i] = lst[len(lst) -1 - i]
+    lst[i] = lst[len(lst) - 1 - i]
     lst[len(lst) - 1 - i] = num
 print(lst)
