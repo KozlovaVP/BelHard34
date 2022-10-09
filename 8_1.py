@@ -25,8 +25,13 @@ class Time(object):
         self.start_time = start_time
         self.end_time = end_time
         self.delta = delta
-        self.remove = []
+        self.booked = []
 
+    def reserve_time(self, _time: str) -> list:
+        self.booked.append(_time)
+        return self.booked
+
+    @property
     def get_timeline(self) -> list:
         lst = [self.start_time,]
         k = 1
@@ -39,25 +44,18 @@ class Time(object):
                     lst.append(f'{i[0]}' + f'{int(i[1]) + 1}' + f'{i[2]}' + '00')
                 i = lst[k]
                 k += 1
+        for l in self.booked:
+            for j in lst:
+                if j == l:
+                    lst.remove(j)
         if not lst:
-            print('There is no time available!')
-        return lst
-
-    def reserve_time(self, _time: str, lst: list):
-        self.remove.append(_time)
-        for i in lst:
-            for k in self.remove:
-                if k == i:
-                    lst.remove(i)
+            raise ValueError('There is no time available!')
         return lst
 
 
-time = Time('10:00', '13:00', '0:30')
-print(time.get_timeline())
-time1 = time.reserve_time('12:00', time.get_timeline())
-print(time1)
-time2 = time.reserve_time('11:30', time1)
-print(time2)
-
-
-
+time = Time('10:00', '12:00', '0:30')
+print(time.get_timeline)
+time.reserve_time('12:00')
+print(time.get_timeline)
+time.reserve_time('10:30')
+print(time.get_timeline)
