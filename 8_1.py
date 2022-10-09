@@ -33,7 +33,7 @@ class Time(object):
 
     @property
     def get_timeline(self) -> list:
-        lst = [self.start_time,]
+        lst = [self.start_time, ]
         k = 1
         i = self.start_time
         if self.delta == '0:30':
@@ -44,6 +44,7 @@ class Time(object):
                     lst.append(f'{i[0]}' + f'{int(i[1]) + 1}' + f'{i[2]}' + '00')
                 i = lst[k]
                 k += 1
+
         for l in self.booked:
             for j in lst:
                 if j == l:
@@ -53,9 +54,54 @@ class Time(object):
         return lst
 
 
+class ReverveDateTime(Time):
+
+    def __init__(self, dates: list, times: list) -> None:
+        if not isinstance(dates, list):
+            raise TypeError('argument `dates` must be a list')
+        for date in dates:
+            if not isinstance(date, int):
+                raise TypeError('date must be a int')
+
+        if not isinstance(times, list):
+            raise TypeError('argument `times` must be a list')
+        for time in times:
+            if not isinstance(time, Time):
+                raise TypeError('time must be a Time')
+
+        self.dates = dates
+        self.times = times
+
+    def get_timeline(self, day: int) -> list:
+        if not isinstance(day, int):
+            raise TypeError('day must be a int')
+        for i in range(len(self.dates)):
+            if self.dates[i] == day:
+                return self.times[i].get_timeline
+
+    def reserve_time(self, day: int, _time: str):
+        if not isinstance(day, int):
+            raise TypeError('day must be a int')
+        if not isinstance(_time, str):
+            raise TypeError('time must be a string')
+
+        for i in range(len(self.dates)):
+            if self.dates[i] == day:
+                return self.times[i].reserve_time(_time)
+
+
 time = Time('10:00', '12:00', '0:30')
 print(time.get_timeline)
 time.reserve_time('12:00')
 print(time.get_timeline)
 time.reserve_time('10:30')
 print(time.get_timeline)
+print('\n')
+
+reserve = ReverveDateTime([1, 8, 12], [Time('10:00', '12:00', '0:30'), Time('10:00', '11:00', '0:30'),
+                                       Time('11:00', '12:00', '0:30')])
+print(reserve.get_timeline(8))
+reserve.reserve_time(8, '10:30')
+print(reserve.get_timeline(8))
+reserve.reserve_time(8, '10:00')
+print(reserve.get_timeline(8))
