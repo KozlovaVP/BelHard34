@@ -43,17 +43,17 @@ class Time(object):
         return lst
 
     def reserve_time(self, _time: str, lst: list):
-        result = []
-        for i in self.get_timeline():
-            if i != _time:
-                result.append(i)
-        return result
+        for i in lst:
+            if i == _time:
+                lst.remove(i)
+        return lst
 
 
 time = Time('10:00', '19:00', '0:30')
 print(time.get_timeline())
-time1 = time.reserve_time('16:00', time)
+time1 = time.reserve_time('16:00', time.get_timeline())
 print(time1)
-
+time2 = time.reserve_time('12:00', time.get_timeline())
+print(time2)
 
 
