@@ -45,10 +45,10 @@ class Time(object):
                 i = lst[k]
                 k += 1
 
-        for l in self.booked:
-            for j in lst:
-                if j == l:
-                    lst.remove(j)
+        for booked_time in self.booked:
+            for time in lst:
+                if time == booked_time:
+                    lst.remove(time)
         if not lst:
             raise ValueError('There is no time available!')
         return lst
@@ -90,7 +90,7 @@ class ReverveDateTime(Time):
                 return self.times[i].reserve_time(_time)
 
 
-time = Time('10:00', '12:00', '0:30')
+time = Time('10:00', '19:00', '0:30')
 print(time.get_timeline)
 time.reserve_time('12:00')
 print(time.get_timeline)
