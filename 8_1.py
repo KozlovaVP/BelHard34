@@ -25,6 +25,7 @@ class Time(object):
         self.start_time = start_time
         self.end_time = end_time
         self.delta = delta
+        self.remove = []
 
     def get_timeline(self) -> list:
         lst = [self.start_time,]
@@ -43,17 +44,20 @@ class Time(object):
         return lst
 
     def reserve_time(self, _time: str, lst: list):
+        self.remove.append(_time)
         for i in lst:
-            if i == _time:
-                lst.remove(i)
+            for k in self.remove:
+                if k == i:
+                    lst.remove(i)
         return lst
 
 
-time = Time('10:00', '19:00', '0:30')
+time = Time('10:00', '13:00', '0:30')
 print(time.get_timeline())
-time1 = time.reserve_time('16:00', time.get_timeline())
+time1 = time.reserve_time('12:00', time.get_timeline())
 print(time1)
-time2 = time.reserve_time('12:00', time.get_timeline())
+time2 = time.reserve_time('11:30', time1)
 print(time2)
+
 
 
